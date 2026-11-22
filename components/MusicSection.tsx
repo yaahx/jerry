@@ -179,17 +179,6 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                 </div>
               </div>
             </div>
-                  </span>
-                  <button
-                    onClick={() => onPlayTrack(track)}
-                    className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-300 hover:text-[#f36c21] transition-colors group/btn"
-                  >
-                    {isThisPlaying ? 'Now Playing' : 'Listen Now'}
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
 
             {/* Centered Dots Below Card */}
             <div className="flex items-center justify-center gap-2.5 mt-6 sm:mt-8">
