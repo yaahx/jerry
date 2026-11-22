@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Left: Navigation Links (No large left margins, ample breathing room) */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-semibold tracking-wider uppercase text-stone-300">
           <a href="#music" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
-            Music
+            Projects
           </a>
           <a href="#store" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             Store
@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-4 ml-auto">
           {/* Mobile links */}
           <div className="md:hidden flex items-center gap-3 text-xs uppercase font-bold text-stone-400">
-            <a href="#music" className="hover:text-[#f36c21]">Music</a>
+            <a href="#music" className="hover:text-[#f36c21]">Projects</a>
             <a href="#store" className="hover:text-[#f36c21]">Store</a>
           </div>
 
