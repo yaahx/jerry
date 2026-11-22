@@ -179,22 +179,6 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                 </div>
               </div>
             </div>
-
-            {/* Centered Dots Below Card */}
-            <div className="flex items-center justify-center gap-2.5 mt-6 sm:mt-8">
-              {tracks.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setIndex(i)}
-                  className={`transition-all duration-300 ${
-                    i === index
-                      ? 'w-8 h-2 bg-[#f36c21]'
-                      : 'w-2 h-2 bg-white/20 hover:bg-white/50'
-                  }`}
-                  aria-label={`Go to project ${i + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* RIGHT arrow */}
