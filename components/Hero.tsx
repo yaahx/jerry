@@ -58,7 +58,7 @@ const socials = [
 
 export const Hero: React.FC<HeroProps> = ({ artistName }) => {
   return (
-    <section className="relative w-full h-[calc(100vh-73px)] flex items-center justify-center overflow-hidden border-b border-white/10 select-none">
+    <section className="relative w-full h-[100svh] min-h-[100svh] pt-20 flex items-center justify-center overflow-hidden border-b border-white/10 select-none">
       {/* Background Burnt Orange Atmospheric Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[350px] sm:h-[450px] bg-gradient-to-r from-[#d9531e]/25 via-[#f36c21]/35 to-[#ff9f43]/20 rounded-full blur-[140px] pointer-events-none -z-10" />
 

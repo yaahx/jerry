@@ -17,6 +17,39 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* Full-Page Section Scroll Snap Container */
+.snap-container {
+  height: 100svh;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Snapped Section Base with progressive enter feel */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100svh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snap-container {
+    scroll-behavior: auto;
+  }
+  .snap-section {
+    transition: none;
+  }
+}
+
 /* Force Sharp Corners on all UI elements */
 button, input, select, textarea, .glass-panel, .card, img, dialog, .modal, .badge, .pill, a {
   border-radius: 0px !important;

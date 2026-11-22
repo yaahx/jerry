@@ -509,97 +509,118 @@ export default function Home() {
         />
       )}
 
-      {/* Hero Section (Edge-to-edge full width without outer margins) */}
-      <Hero artistName={settings.artistName} />
+      {/* Main Full-Page Snap Scroll Container */}
+      <div className="snap-container">
+        {/* Section 1: Hero Section */}
+        <section className="snap-section">
+          <Hero artistName={settings.artistName} />
+        </section>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6">
-
-        <MusicSection
-          tracks={tracks}
-          currentTrackId={currentTrack?.id || null}
-          isPlaying={isPlaying}
-          isAdmin={isAdmin}
-          onPlayTrack={(trk) => {
-            const idx = tracks.findIndex((t) => t.id === trk.id);
-            if (idx !== -1) {
-              if (idx === currentTrackIndex && isPlaying) {
-                handleTogglePlay();
-              } else {
-                playTrackAtIndex(idx);
-              }
-            }
-          }}
-          onAddTrack={() => {
-            setTrackToEdit(null);
-            setIsTrackModalOpen(true);
-          }}
-          onEditTrack={(trk) => {
-            setTrackToEdit(trk);
-            setIsTrackModalOpen(true);
-          }}
-          onDeleteTrack={handleDeleteTrack}
-          onToast={showToast}
-        />
-
-        <StoreSection
-          products={products}
-          currency={settings.currency}
-          isAdmin={isAdmin}
-          onAddToCart={handleAddToCart}
-          onAddProduct={() => {
-            setProductToEdit(null);
-            setIsProductModalOpen(true);
-          }}
-          onEditProduct={(p) => {
-            setProductToEdit(p);
-            setIsProductModalOpen(true);
-          }}
-          onDeleteProduct={handleDeleteProduct}
-        />
-
-        <NewsSection
-          news={news}
-          isAdmin={isAdmin}
-          onAddNews={() => {
-            setNewsToEdit(null);
-            setIsNewsModalOpen(true);
-          }}
-          onEditNews={(p) => {
-            setNewsToEdit(p);
-            setIsNewsModalOpen(true);
-          }}
-          onDeleteNews={handleDeleteNews}
-        />
-
-        <AboutSection
-          bio={settings.bio}
-          onSendMessage={handleSendMessage}
-          onToast={showToast}
-        />
-
-        {/* Minimal Sharp Footer */}
-        <footer className="pt-16 pb-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest text-stone-500">
-          <div>
-            © {new Date().getFullYear()} {settings.artistName}. All rights reserved.
-          </div>
-          <div className="flex items-center gap-6">
-            <a href="#music" className="hover:text-[#f36c21] transition-colors">Music</a>
-            <a href="#store" className="hover:text-[#f36c21] transition-colors">Store</a>
-            <a href="#news" className="hover:text-[#f36c21] transition-colors">Updates</a>
-            <button
-              onClick={() => {
-                if (isAdmin) setIsAdminDashboardOpen(true);
-                else setIsAdminLoginOpen(true);
+        {/* Section 2: New Projects Section */}
+        <section className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex items-center justify-center border-b border-white/10">
+          <div className="w-full max-w-7xl mx-auto">
+            <MusicSection
+              tracks={tracks}
+              currentTrackId={currentTrack?.id || null}
+              isPlaying={isPlaying}
+              isAdmin={isAdmin}
+              onPlayTrack={(trk) => {
+                const idx = tracks.findIndex((t) => t.id === trk.id);
+                if (idx !== -1) {
+                  if (idx === currentTrackIndex && isPlaying) {
+                    handleTogglePlay();
+                  } else {
+                    playTrackAtIndex(idx);
+                  }
+                }
               }}
-              className="text-stone-600 hover:text-[#f36c21] transition-colors tracking-widest"
-              title="Admin Control"
-            >
-              Admin Access
-            </button>
+              onAddTrack={() => {
+                setTrackToEdit(null);
+                setIsTrackModalOpen(true);
+              }}
+              onEditTrack={(trk) => {
+                setTrackToEdit(trk);
+                setIsTrackModalOpen(true);
+              }}
+              onDeleteTrack={handleDeleteTrack}
+              onToast={showToast}
+            />
           </div>
-        </footer>
-      </main>
+        </section>
+
+        {/* Section 3: Merchandise & Store */}
+        <section className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex items-center justify-center border-b border-white/10">
+          <div className="w-full max-w-7xl mx-auto">
+            <StoreSection
+              products={products}
+              currency={settings.currency}
+              isAdmin={isAdmin}
+              onAddToCart={handleAddToCart}
+              onAddProduct={() => {
+                setProductToEdit(null);
+                setIsProductModalOpen(true);
+              }}
+              onEditProduct={(p) => {
+                setProductToEdit(p);
+                setIsProductModalOpen(true);
+              }}
+              onDeleteProduct={handleDeleteProduct}
+            />
+          </div>
+        </section>
+
+        {/* Section 4: News & Updates */}
+        <section className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex items-center justify-center border-b border-white/10">
+          <div className="w-full max-w-7xl mx-auto">
+            <NewsSection
+              news={news}
+              isAdmin={isAdmin}
+              onAddNews={() => {
+                setNewsToEdit(null);
+                setIsNewsModalOpen(true);
+              }}
+              onEditNews={(p) => {
+                setNewsToEdit(p);
+                setIsNewsModalOpen(true);
+              }}
+              onDeleteNews={handleDeleteNews}
+            />
+          </div>
+        </section>
+
+        {/* Section 5: Story & Contact + Footer */}
+        <section className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex flex-col justify-between">
+          <div className="w-full max-w-7xl mx-auto my-auto">
+            <AboutSection
+              bio={settings.bio}
+              onSendMessage={handleSendMessage}
+              onToast={showToast}
+            />
+          </div>
+
+          {/* Minimal Sharp Footer */}
+          <footer className="w-full max-w-7xl mx-auto pt-8 pb-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest text-stone-500">
+            <div>
+              © {new Date().getFullYear()} {settings.artistName}. All rights reserved.
+            </div>
+            <div className="flex items-center gap-6">
+              <a href="#music" className="hover:text-[#f36c21] transition-colors">Projects</a>
+              <a href="#store" className="hover:text-[#f36c21] transition-colors">Store</a>
+              <a href="#news" className="hover:text-[#f36c21] transition-colors">Updates</a>
+              <button
+                onClick={() => {
+                  if (isAdmin) setIsAdminDashboardOpen(true);
+                  else setIsAdminLoginOpen(true);
+                }}
+                className="text-stone-600 hover:text-[#f36c21] transition-colors tracking-widest"
+                title="Admin Control"
+              >
+                Admin Access
+              </button>
+            </div>
+          </footer>
+        </section>
+      </div>
 
       {/* Persistent Audio Player Bar */}
       <AudioPlayerBar

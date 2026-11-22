@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   artistName,
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#0c0a09]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#0c0a09]/90 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-4">
       <div className="w-full flex items-center justify-between relative">
         {/* Left: Navigation Links (No large left margins, ample breathing room) */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-semibold tracking-wider uppercase text-stone-300">
