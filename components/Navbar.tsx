@@ -39,7 +39,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Center: Brand Name (Centered in the viewport, will not collide with left or right items) */}
         <div className="md:absolute md:left-1/2 md:-translate-x-1/2 flex items-center justify-center">
           <a href="#" className="group inline-block text-center">
-            <span className="font-brand font-black text-xl sm:text-2xl lg:text-3xl tracking-wider uppercase bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent group-hover:to-[#ff9f43] transition-all whitespace-nowrap">
+            <span
+              className="font-brand font-black tracking-wider uppercase bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent group-hover:to-[#ff9f43] transition-all whitespace-nowrap"
+              style={{ fontSize: "clamp(0.9rem, 2vw, 1.75rem)" }}
+            >
               {artistName}
             </span>
           </a>
@@ -55,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={onOpenCart}
-            className="relative flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-[#f36c21] border border-white/10 hover:border-[#f36c21] text-white transition-all text-sm font-bold tracking-wider uppercase shadow-sm"
+            className="relative flex items-center gap-2 px-4 py-2 bg-transparent border border-white/20 hover:border-[#f36c21] text-white hover:text-[#f36c21] transition-all text-sm font-bold tracking-wider uppercase shadow-sm"
             title="Open Shopping Cart"
           >
             <ShoppingBag className="w-4 h-4 text-[#ff9f43]" />

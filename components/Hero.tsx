@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ artistName }) => {
       {/* Edge-to-Edge Vector Scaled GTA Typography: Fills screen, zero cut-off words */}
       <div className="w-full h-full flex items-center justify-center">
         <svg
-          viewBox="0 0 1400 230"
+          viewBox="0 0 1400 320"
           className="w-full h-full overflow-visible select-none"
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,15 +39,15 @@ export const Hero: React.FC<HeroProps> = ({ artistName }) => {
           {/* GTA San Andreas styled text */}
           <text
             x="50%"
-            y="65%"
+            y="58%"
             textAnchor="middle"
             className="font-black uppercase"
             style={{
               fontFamily: "'Pirata One', 'UnifrakturMaguntia', cursive, sans-serif",
-              fontSize: "148px",
+              fontSize: "210px",
               letterSpacing: "0.03em",
               stroke: "#000000",
-              strokeWidth: "14px",
+              strokeWidth: "16px",
               paintOrder: "stroke fill",
               fill: "url(#gtaOrangeGrad)",
               filter: "url(#gta3DShadow)",
