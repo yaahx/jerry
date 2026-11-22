@@ -79,6 +79,8 @@ export default function Home() {
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [newsToEdit, setNewsToEdit] = useState<NewsPost | null>(null);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [isProjectsSectionVisible, setIsProjectsSectionVisible] = useState(false);
+  const projectsSectionRef = useRef<HTMLElement | null>(null);
 
   // Toast notifications
   const [toastMsg, setToastMsg] = useState<string | null>(null);
@@ -138,7 +140,24 @@ export default function Home() {
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('ended', handleEnded);
 
+    // Intersection Observer to detect when the New Projects section is in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsProjectsSectionVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    if (projectsSectionRef.current) {
+      observer.observe(projectsSectionRef.current);
+    }
+
     return () => {
+      observer.disconnect();
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('ended', handleEnded);
       stopSynthAudio();
@@ -517,7 +536,10 @@ export default function Home() {
         </section>
 
         {/* Section 2: New Projects Section */}
-        <section className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex items-center justify-center border-b border-white/10">
+        <section
+          ref={projectsSectionRef}
+          className="snap-section px-4 sm:px-8 lg:px-12 pt-20 pb-12 flex items-center justify-center border-b border-white/10"
+        >
           <div className="w-full max-w-7xl mx-auto">
             <MusicSection
               tracks={tracks}
@@ -622,10 +644,11 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Persistent Audio Player Bar */}
+      {/* Audio Player Bar (Appears exclusively when in New Projects section) */}
       <AudioPlayerBar
         currentTrack={currentTrack}
         isPlaying={isPlaying}
+        isVisible={isProjectsSectionVisible}
         onTogglePlay={handleTogglePlay}
         onNext={handleNextTrack}
         onPrev={handlePrevTrack}

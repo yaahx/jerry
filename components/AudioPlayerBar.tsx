@@ -7,6 +7,7 @@ import { Track } from '@/lib/types';
 interface AudioPlayerBarProps {
   currentTrack: Track | null;
   isPlaying: boolean;
+  isVisible?: boolean;
   onTogglePlay: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -21,6 +22,7 @@ interface AudioPlayerBarProps {
 export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   currentTrack,
   isPlaying,
+  isVisible = true,
   onTogglePlay,
   onNext,
   onPrev,
@@ -86,7 +88,13 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 h-24 bg-[#0e0b09]/98 backdrop-blur-2xl border-t border-white/10 px-6 sm:px-10 flex items-center justify-between gap-6">
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-50 h-24 bg-[#0e0b09]/98 backdrop-blur-2xl border-t border-white/10 px-6 sm:px-10 flex items-center justify-between gap-6 transition-all duration-500 ease-out ${
+        isVisible
+          ? 'translate-y-0 opacity-100 pointer-events-auto'
+          : 'translate-y-full opacity-0 pointer-events-none'
+      }`}
+    >
       {/* Left: Track Info */}
       <div className="flex items-center gap-4 min-w-0 max-w-[320px]">
         <img
