@@ -20,6 +20,7 @@ module.exports = {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
         brand: ['Unbounded', 'Syne', 'sans-serif'],
         display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],
+        gta: ['"Pirata One"', '"UnifrakturMaguntia"', 'cursive', 'sans-serif'],
       },
       borderRadius: {
         DEFAULT: '0px',
