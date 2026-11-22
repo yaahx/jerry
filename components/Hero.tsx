@@ -8,15 +8,16 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ artistName }) => {
   return (
-    <section className="relative w-full min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center py-12 sm:py-16 lg:py-24 overflow-hidden border-b border-white/10 select-none px-2 sm:px-4">
+    <section className="relative w-full h-[calc(100vh-73px)] flex items-center justify-center overflow-hidden border-b border-white/10 select-none">
       {/* Background Burnt Orange Atmospheric Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[350px] sm:h-[450px] bg-gradient-to-r from-[#d9531e]/25 via-[#f36c21]/35 to-[#ff9f43]/20 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       {/* Edge-to-Edge Vector Scaled GTA Typography: Fills screen, zero cut-off words */}
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full h-full flex items-center justify-center">
         <svg
           viewBox="0 0 1400 230"
-          className="w-full h-auto max-h-[65vh] overflow-visible select-none"
+          className="w-full h-full overflow-visible select-none"
+          preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
