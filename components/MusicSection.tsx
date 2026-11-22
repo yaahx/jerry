@@ -157,10 +157,7 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                   <span className="text-[#f36c21] text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-3 sm:mb-4 block">
                     {track.genre}
                   </span>
-                  <h3
-                    className="font-display font-black text-white uppercase tracking-tight leading-tight mb-3 sm:mb-4 break-words"
-                    style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.75rem)' }}
-                  >
+                  <h3 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-white uppercase tracking-tight leading-snug mb-3 sm:mb-4 break-words">
                     {track.title}
                   </h3>
                   <p className="text-stone-300 text-sm sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-4 font-normal">
