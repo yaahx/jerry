@@ -2,17 +2,18 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Play, Pause, ArrowLeft, Disc, Layers, Music, Flame, Sparkles } from 'lucide-react';
+import { Play, Pause, ArrowLeft, Disc, Layers, Music } from 'lucide-react';
 import { Track } from '@/lib/types';
-import { initialTracks } from '@/lib/storage';
+import { storage, initialTracks } from '@/lib/storage';
 
 const projectImages = [
-  'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
-  'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80',
-  'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80',
+  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+  'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80',
+  'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80',
+  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80',
   'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
   'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=800&q=80',
-  'https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=800&q=80',
+  'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80',
 ];
 
 interface CategoryItem {
@@ -22,43 +23,32 @@ interface CategoryItem {
 }
 
 const categories: CategoryItem[] = [
-  { id: 'all', name: 'All', icon: <Layers className="w-4 h-4" /> },
   { id: 'albums', name: 'Albums', icon: <Disc className="w-4 h-4" /> },
+  { id: 'tracks', name: 'Tracks', icon: <Layers className="w-4 h-4" /> },
   { id: 'singles', name: 'Singles', icon: <Music className="w-4 h-4" /> },
-  { id: 'features', name: 'Features', icon: <Sparkles className="w-4 h-4" /> },
-  { id: 'beats', name: 'Beat Packs', icon: <Flame className="w-4 h-4" /> },
-  { id: 'experimental', name: 'Experimental', icon: <Layers className="w-4 h-4" /> },
 ];
 
 export default function ProjectsPage() {
   const [tracks, setTracks] = useState<Track[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('albums');
   const [playingId, setPlayingId] = useState<string | null>(null);
 
   useEffect(() => {
-    setTracks(initialTracks);
+    setTracks(storage.getTracks() || initialTracks);
   }, []);
 
   const togglePlay = (id: string) => {
     setPlayingId((prev) => (prev === id ? null : id));
   };
 
-  const filteredTracks =
-    selectedCategory === 'all'
-      ? tracks
-      : tracks.filter((t) => {
-          const g = (t.genre || '').toLowerCase();
-          const title = (t.title || '').toLowerCase();
-          const desc = (t.description || '').toLowerCase();
-          const term = selectedCategory.toLowerCase();
-
-          if (term === 'albums') return g.includes('album') || desc.includes('album') || g.includes('beats');
-          if (term === 'singles') return g.includes('lo-fi') || g.includes('chill') || g.includes('single');
-          if (term === 'features') return g.includes('trap') || desc.includes('feature') || title.includes('frequency');
-          if (term === 'beats') return g.includes('beats') || desc.includes('808');
-          if (term === 'experimental') return g.includes('experimental') || g.includes('ambient');
-          return true;
-        });
+  const filteredTracks = tracks.filter((t) => {
+    const genre = (t.genre || '').toLowerCase();
+    const term = selectedCategory.toLowerCase();
+    if (term === 'albums') return genre.includes('album');
+    if (term === 'tracks') return genre.includes('track');
+    if (term === 'singles') return genre.includes('single');
+    return true;
+  });
 
   return (
     <div className="min-h-screen bg-[#0c0a09] text-white">
@@ -69,7 +59,7 @@ export default function ProjectsPage() {
           className="flex items-center gap-2 text-stone-400 hover:text-[#f36c21] transition-colors text-sm font-bold uppercase tracking-wider group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          Back to Home
+          BACK
         </Link>
         <span
           className="font-brand font-black uppercase tracking-wider bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent"
@@ -77,7 +67,7 @@ export default function ProjectsPage() {
         >
           uglydogsarecute
         </span>
-        <div className="w-24" /> {/* spacer */}
+        <div className="w-16" /> {/* spacer */}
       </header>
 
       {/* Main Container - Left-aligned layout */}
@@ -97,40 +87,56 @@ export default function ProjectsPage() {
 
         {/* Content Layout: Mini Sidebar on the Left, 3-Column Grid on the Right */}
         <div className="flex flex-col lg:flex-row gap-10 items-start">
-          {/* Mini Sidebar on the Left */}
-          <aside className="w-full lg:w-64 shrink-0 bg-[#0e0c0a] border border-white/10 p-5 shadow-xl">
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-[#f36c21] pb-3 border-b border-white/10 mb-4">
+          {/* Mini Sidebar on the Left (Card removed, clean editorial treatment) */}
+          <aside className="w-full lg:w-64 shrink-0">
+            {/* Category Header */}
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-[#f36c21] mb-3">
               Categories
             </div>
-            <nav className="flex flex-row lg:flex-col gap-1.5 flex-wrap">
+
+            {/* Subtle horizontal separator line between categories header and navigation */}
+            <div className="h-px w-full bg-white/10 mb-4" />
+
+            {/* Editorial Category Navigation */}
+            <nav className="flex flex-row lg:flex-col gap-2 flex-wrap">
               {categories.map((cat) => {
                 const isActive = selectedCategory === cat.id;
+                const count = tracks.filter((t) =>
+                  (t.genre || '').toLowerCase().includes(cat.id.replace(/s$/, ''))
+                ).length;
+
                 return (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`flex items-center gap-3 px-4 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all text-left w-full ${
+                    className={`group flex items-center justify-between px-3.5 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all text-left w-full border-l-2 ${
                       isActive
-                        ? 'bg-[#f36c21] text-white shadow-md'
-                        : 'text-stone-400 hover:text-white hover:bg-white/5'
+                        ? 'border-[#f36c21] bg-[#f36c21]/10 text-white'
+                        : 'border-transparent text-stone-400 hover:text-white hover:border-white/30 hover:bg-white/[0.02]'
                     }`}
                   >
-                    <span className={isActive ? 'text-white' : 'text-[#f36c21]'}>
-                      {cat.icon}
+                    <div className="flex items-center gap-3">
+                      <span className={isActive ? 'text-[#f36c21]' : 'text-stone-500 group-hover:text-stone-300'}>
+                        {cat.icon}
+                      </span>
+                      <span>{cat.name}</span>
+                    </div>
+                    <span className="text-[11px] font-mono text-stone-500">
+                      0{count}
                     </span>
-                    <span>{cat.name}</span>
                   </button>
                 );
               })}
             </nav>
 
-            {/* Sidebar personality callout */}
-            <div className="hidden lg:block mt-8 pt-6 border-t border-white/10 text-xs text-stone-500 leading-relaxed font-mono">
+            {/* Subtle horizontal separator line below category navigation */}
+            <div className="h-px w-full bg-white/10 mt-5 mb-5" />
+
+            {/* Clean Sidebar Personality Meta (No "SHARP CORNERS ONLY") */}
+            <div className="hidden lg:block text-xs text-stone-500 leading-relaxed font-mono">
               CURATED ARCHIVE
               <br />
               <span className="text-stone-400">uglydogsarecute</span>
-              <br />
-              SHARP CORNERS ONLY
             </div>
           </aside>
 
@@ -184,7 +190,7 @@ export default function ProjectsPage() {
                     {/* Card Body */}
                     <div className="p-6 flex-1 flex flex-col justify-between">
                       <div>
-                        <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight leading-snug mb-3">
+                        <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight leading-snug mb-3 break-words">
                           {track.title}
                         </h3>
                         <p className="text-stone-400 text-sm leading-relaxed line-clamp-3 font-normal mb-6">
@@ -212,13 +218,13 @@ export default function ProjectsPage() {
             {filteredTracks.length === 0 && (
               <div className="flex flex-col items-center justify-center py-32 border border-dashed border-white/10 text-center w-full">
                 <p className="text-stone-400 text-sm uppercase tracking-widest mb-3">
-                  No projects found in this category
+                  No projects found in {selectedCategory}
                 </p>
                 <button
-                  onClick={() => setSelectedCategory('all')}
+                  onClick={() => setSelectedCategory('albums')}
                   className="px-6 py-2.5 bg-[#f36c21] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#ff7b34] transition-all"
                 >
-                  View All Projects
+                  View Albums
                 </button>
               </div>
             )}

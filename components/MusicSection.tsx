@@ -152,20 +152,23 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
               </div>
 
               {/* Info panel */}
-              <div className="flex flex-col justify-between p-7 sm:p-10 lg:p-12 bg-[#0e0c0a] h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/10">
-                <div>
-                  <span className="text-[#f36c21] text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-4 sm:mb-6 block">
+              <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 bg-[#0e0c0a] h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/10">
+                <div className="min-w-0">
+                  <span className="text-[#f36c21] text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-3 sm:mb-4 block">
                     {track.genre}
                   </span>
-                  <h3 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white uppercase tracking-tight leading-tight mb-4 sm:mb-6">
+                  <h3
+                    className="font-display font-black text-white uppercase tracking-tight leading-tight mb-3 sm:mb-4 break-words"
+                    style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.75rem)' }}
+                  >
                     {track.title}
                   </h3>
-                  <p className="text-stone-300 text-sm sm:text-base leading-relaxed line-clamp-4 font-normal">
+                  <p className="text-stone-300 text-sm sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-4 font-normal">
                     {track.description}
                   </p>
                 </div>
 
-                <div className="pt-6 sm:pt-8 mt-6 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-4 sm:pt-6 mt-4 border-t border-white/10 flex items-center justify-between">
                   <span className="text-stone-400 text-xs sm:text-sm font-mono uppercase tracking-wider">
                     {track.duration}
                   </span>

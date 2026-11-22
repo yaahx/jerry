@@ -1,49 +1,85 @@
 import { Track, Product, NewsPost, Activity, Metrics, GuestMessage, SiteSettings, CartItem } from './types';
 
 export const initialTracks: Track[] = [
+  // Album
   {
-    id: 'trk-1',
-    title: 'Neon Doberman',
+    id: 'trk-album-1',
+    title: 'diary of a loverboy',
     artist: 'uglydogsarecute',
-    genre: 'Burnt Beats',
-    duration: '3:24',
-    art: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
+    genre: 'Albums',
+    duration: '38:14',
+    art: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80',
     audioUrl: '',
-    description: 'Heavy 808 sub-bass accompanied by warm analog synths and crisp percussion.',
+    description: 'A collection of thoughts, feelings and stories from the complicated side of love.',
+    plays: 240,
+  },
+  // Tracks
+  {
+    id: 'trk-track-1',
+    title: "I can't save her",
+    artist: 'uglydogsarecute',
+    genre: 'Tracks',
+    duration: '3:22',
+    art: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80',
+    audioUrl: '',
+    description: 'Some people are stories you can never rewrite.',
+    plays: 185,
+  },
+  {
+    id: 'trk-track-2',
+    title: 'Playboy szn',
+    artist: 'uglydogsarecute',
+    genre: 'Tracks',
+    duration: '2:56',
+    art: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80',
+    audioUrl: '',
+    description: 'A season of freedom, temptation and complicated feelings.',
     plays: 142,
   },
   {
-    id: 'trk-2',
-    title: 'Midnight Bark',
+    id: 'trk-track-3',
+    title: 'Honest losses',
     artist: 'uglydogsarecute',
-    genre: 'Lo-Fi Chill',
-    duration: '2:48',
-    art: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
+    genre: 'Tracks',
+    duration: '3:41',
+    art: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
     audioUrl: '',
-    description: 'Warm vinyl crackle, mellow electric piano chords, and nighttime ambience.',
-    plays: 98,
+    description: 'Learning to accept the losses that come with being honest.',
+    plays: 128,
   },
   {
-    id: 'trk-3',
-    title: 'Amber Resonance',
+    id: 'trk-track-4',
+    title: 'Shortgun wedding',
     artist: 'uglydogsarecute',
-    genre: 'Experimental',
-    duration: '3:52',
-    art: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop&q=80',
+    genre: 'Tracks',
+    duration: '3:15',
+    art: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&auto=format&fit=crop&q=80',
     audioUrl: '',
-    description: 'Glitch vocal chops layered across syncopated hi-hats and deep reverberated pads.',
-    plays: 87,
+    description: 'When love moves fast and life gets complicated.',
+    plays: 110,
+  },
+  // Singles
+  {
+    id: 'trk-single-1',
+    title: 'Mercy Issues',
+    artist: 'uglydogsarecute',
+    genre: 'Singles',
+    duration: '2:49',
+    art: 'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=800&auto=format&fit=crop&q=80',
+    audioUrl: '',
+    description: 'A little too much pride and not enough mercy.',
+    plays: 195,
   },
   {
-    id: 'trk-4',
-    title: 'Underground Frequency',
+    id: 'trk-single-2',
+    title: 'Victoria nights',
     artist: 'uglydogsarecute',
-    genre: 'Ambient',
-    duration: '4:10',
-    art: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
+    genre: 'Singles',
+    duration: '3:34',
+    art: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&auto=format&fit=crop&q=80',
     audioUrl: '',
-    description: 'Deep modular drone with subtle rhythmic industrial pulses and analog warmth.',
-    plays: 64,
+    description: 'Late nights, distant thoughts and unforgettable moments.',
+    plays: 167,
   },
 ];
 
@@ -134,7 +170,14 @@ export const storage = {
     if (typeof window === 'undefined') return initialTracks;
     try {
       const saved = localStorage.getItem('uglydogs_tracks');
-      return saved ? JSON.parse(saved) : initialTracks;
+      if (!saved) return initialTracks;
+      const parsed = JSON.parse(saved);
+      // If older demo data exists (e.g. Neon Doberman), upgrade to new official content
+      if (Array.isArray(parsed) && parsed.some((t: Track) => t.id === 'trk-1')) {
+        localStorage.setItem('uglydogs_tracks', JSON.stringify(initialTracks));
+        return initialTracks;
+      }
+      return parsed;
     } catch {
       return initialTracks;
     }
