@@ -95,7 +95,7 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
           )}
         </div>
       ) : (
-        <div className="relative flex items-center gap-3 sm:gap-6 w-full max-w-6xl mx-auto">
+        <div className="relative flex items-center justify-center gap-3 sm:gap-6 w-full max-w-6xl mx-auto">
           {/* LEFT arrow */}
           <button
             onClick={prev}
@@ -106,11 +106,11 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
           </button>
 
           {/* Card + dots wrapper */}
-          <div className="flex-1 flex flex-col min-w-0">
-            {/* Extended large dimension card with breathing room */}
-            <div className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] border border-white/10 overflow-hidden min-h-[380px] sm:min-h-[460px] lg:min-h-[500px] bg-[#0d0b09] shadow-2xl">
+          <div className="flex-1 flex flex-col min-w-0 max-w-5xl">
+            {/* Consistent fixed large dimension card across all slides */}
+            <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] border border-white/10 overflow-hidden h-[420px] sm:h-[480px] lg:h-[500px] w-full bg-[#0d0b09] shadow-2xl">
               {/* Image panel */}
-              <div className="relative overflow-hidden h-[240px] md:h-full w-full">
+              <div className="relative overflow-hidden h-full w-full">
                 <img
                   key={track.id}
                   src={imgSrc}
@@ -168,6 +168,17 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                 <div className="pt-6 sm:pt-8 mt-6 border-t border-white/10 flex items-center justify-between">
                   <span className="text-stone-400 text-xs sm:text-sm font-mono uppercase tracking-wider">
                     {track.duration}
+                  </span>
+                  <button
+                    onClick={() => onPlayTrack(track)}
+                    className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-300 hover:text-[#f36c21] transition-colors group/btn"
+                  >
+                    {isThisPlaying ? 'Now Playing' : 'Listen Now'}
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
                   </span>
                   <button
                     onClick={() => onPlayTrack(track)}

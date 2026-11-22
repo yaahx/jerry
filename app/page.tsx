@@ -510,7 +510,7 @@ export default function Home() {
       )}
 
       {/* Main Full-Page Snap Scroll Container */}
-      <div className="snap-container">
+      <main className="w-full">
         {/* Section 1: Hero Section */}
         <section className="snap-section">
           <Hero artistName={settings.artistName} />
@@ -620,7 +620,7 @@ export default function Home() {
             </div>
           </footer>
         </section>
-      </div>
+      </main>
 
       {/* Persistent Audio Player Bar */}
       <AudioPlayerBar

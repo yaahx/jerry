@@ -9,44 +9,43 @@
   --accent-amber: #ff9f43;
 }
 
+/* Full-Page Section Scroll Snapping */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
 body {
   background-color: var(--bg-primary);
   color: #f5f3f0;
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: -0.01em;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Full-Page Section Scroll Snap Container */
-.snap-container {
-  height: 100svh;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Snapped Section Base with progressive enter feel */
+/* Snapped Section Base with full-viewport height */
 .snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  height: 100vh;
+  height: 100svh;
+  min-height: 100vh;
   min-height: 100svh;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  box-sizing: border-box;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .snap-container {
+  html {
     scroll-behavior: auto;
-  }
-  .snap-section {
-    transition: none;
   }
 }
 
