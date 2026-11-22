@@ -52,8 +52,10 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
       {/* Header */}
       <div className="flex items-end justify-between mb-14 gap-4">
         <div>
-          <p className="text-[#f36c21] text-xs font-bold uppercase tracking-[0.3em] mb-3">Latest Work</p>
-          <h2 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-none">
+          {/* "Latest Work" — white */}
+          <p className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-3">Latest Work</p>
+          {/* "New Projects" — burnt orange */}
+          <h2 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-none text-[#f36c21]">
             New<br />Projects
           </h2>
         </div>
@@ -68,7 +70,6 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
               Add Project
             </button>
           )}
-
           <Link
             href="/projects"
             className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-stone-400 hover:text-[#f36c21] transition-colors group"
@@ -93,90 +94,94 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
           )}
         </div>
       ) : (
-        <div className="relative">
-          {/* Card */}
-          <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] border border-white/8 overflow-hidden">
+        <div className="relative flex items-center gap-3">
 
-            {/* Image panel */}
-            <div className="relative overflow-hidden aspect-[16/10] md:aspect-auto md:min-h-[420px]">
-              <img
-                key={track.id}
-                src={imgSrc}
-                alt={track.title}
-                className="w-full h-full object-cover transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+          {/* LEFT arrow */}
+          <button
+            onClick={prev}
+            className="flex-shrink-0 w-11 h-11 border border-white/15 text-stone-400 hover:border-[#f36c21] hover:text-[#f36c21] transition-all flex items-center justify-center self-center"
+            aria-label="Previous project"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-              {/* Play btn */}
-              <button
-                onClick={() => onPlayTrack(track)}
-                className={`absolute bottom-6 left-6 w-14 h-14 flex items-center justify-center bg-[#f36c21] text-white shadow-lg transition-all duration-300 ${
-                  isThisPlaying ? 'opacity-100' : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                {isThisPlaying
-                  ? <Pause className="w-6 h-6 fill-white" />
-                  : <Play className="w-6 h-6 fill-white ml-0.5" />}
-              </button>
+          {/* Card + dots wrapper */}
+          <div className="flex-1 flex flex-col">
 
-              {/* Admin btns */}
-              {isAdmin && (
-                <div className="absolute top-4 right-4 flex gap-2">
-                  <button onClick={() => onEditTrack(track)} className="p-2 bg-[#f36c21] text-white">
-                    <Edit2 className="w-3.5 h-3.5" />
-                  </button>
-                  <button onClick={() => onDeleteTrack(track.id)} className="p-2 bg-red-600 text-white">
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              )}
+            {/* Card — fixed height so all cards are identical size */}
+            <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] border border-white/8 overflow-hidden h-[420px]">
 
-              {/* Counter badge */}
-              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm px-3 py-1 text-xs font-mono text-stone-300 uppercase tracking-widest">
-                {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-              </div>
-            </div>
+              {/* Image panel */}
+              <div className="relative overflow-hidden h-full">
+                <img
+                  key={track.id}
+                  src={imgSrc}
+                  alt={track.title}
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
-            {/* Info panel */}
-            <div className="flex flex-col justify-between p-8 md:p-10 bg-[#0f0d0b]">
-              <div>
-                <span className="text-[#f36c21] text-xs font-bold uppercase tracking-[0.25em] mb-6 block">
-                  {track.genre}
-                </span>
-                <h3 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-5">
-                  {track.title}
-                </h3>
-                <p className="text-stone-400 text-sm leading-relaxed">
-                  {track.description}
-                </p>
-              </div>
-
-              <div className="mt-10 pt-6 border-t border-white/8 flex items-center justify-between">
-                <span className="text-stone-500 text-xs font-mono uppercase tracking-wider">
-                  {track.duration}
-                </span>
+                {/* Play btn */}
                 <button
                   onClick={() => onPlayTrack(track)}
-                  className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-[#f36c21] transition-colors group/btn"
+                  className={`absolute bottom-6 left-6 w-14 h-14 flex items-center justify-center bg-[#f36c21] text-white shadow-lg transition-all duration-300 ${
+                    isThisPlaying ? 'opacity-100' : 'opacity-70 hover:opacity-100'
+                  }`}
                 >
-                  {isThisPlaying ? 'Now Playing' : 'Listen'}
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  {isThisPlaying
+                    ? <Pause className="w-6 h-6 fill-white" />
+                    : <Play className="w-6 h-6 fill-white ml-0.5" />}
                 </button>
+
+                {/* Admin btns */}
+                {isAdmin && (
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    <button onClick={() => onEditTrack(track)} className="p-2 bg-[#f36c21] text-white">
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </button>
+                    <button onClick={() => onDeleteTrack(track.id)} className="p-2 bg-red-600 text-white">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+
+                {/* Counter badge */}
+                <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm px-3 py-1 text-xs font-mono text-stone-300 uppercase tracking-widest">
+                  {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                </div>
+              </div>
+
+              {/* Info panel */}
+              <div className="flex flex-col justify-between p-8 md:p-10 bg-[#0f0d0b] h-full overflow-hidden">
+                <div>
+                  <span className="text-[#f36c21] text-xs font-bold uppercase tracking-[0.25em] mb-6 block">
+                    {track.genre}
+                  </span>
+                  <h3 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-5">
+                    {track.title}
+                  </h3>
+                  <p className="text-stone-400 text-sm leading-relaxed line-clamp-4">
+                    {track.description}
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-white/8 flex items-center justify-between">
+                  <span className="text-stone-500 text-xs font-mono uppercase tracking-wider">
+                    {track.duration}
+                  </span>
+                  <button
+                    onClick={() => onPlayTrack(track)}
+                    className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-[#f36c21] transition-colors group/btn"
+                  >
+                    {isThisPlaying ? 'Now Playing' : 'Listen'}
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Nav arrows */}
-          <div className="flex items-center gap-3 mt-6 justify-end">
-            <button
-              onClick={prev}
-              className="w-11 h-11 border border-white/15 text-stone-400 hover:border-[#f36c21] hover:text-[#f36c21] transition-all flex items-center justify-center"
-              aria-label="Previous project"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            {/* Dot indicators */}
-            <div className="flex items-center gap-2 px-2">
+            {/* Dots — centred below the card */}
+            <div className="flex items-center justify-center gap-2 mt-5">
               {tracks.map((_, i) => (
                 <button
                   key={i}
@@ -190,14 +195,16 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                 />
               ))}
             </div>
-            <button
-              onClick={next}
-              className="w-11 h-11 border border-white/15 text-stone-400 hover:border-[#f36c21] hover:text-[#f36c21] transition-all flex items-center justify-center"
-              aria-label="Next project"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
           </div>
+
+          {/* RIGHT arrow */}
+          <button
+            onClick={next}
+            className="flex-shrink-0 w-11 h-11 border border-white/15 text-stone-400 hover:border-[#f36c21] hover:text-[#f36c21] transition-all flex items-center justify-center self-center"
+            aria-label="Next project"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       )}
     </section>
