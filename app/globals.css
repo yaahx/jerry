@@ -13,45 +13,41 @@ body {
   background-color: var(--bg-primary);
   color: #f5f3f0;
   overflow-x: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Force Sharp Corners on all UI elements */
+button, input, select, textarea, .glass-panel, .card, img, dialog, .modal, .badge, .pill, a {
+  border-radius: 0px !important;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #110e0c;
 }
 ::-webkit-scrollbar-thumb {
   background: #2a2019;
-  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #f36c21;
 }
 
-/* Glassmorphism utility */
+/* Sharp glassmorphic panel styling */
 .glass-panel {
-  background: rgba(26, 21, 16, 0.78);
+  background: rgba(22, 17, 13, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0px !important;
 }
 
 .glass-panel:hover {
-  border-color: rgba(243, 108, 33, 0.4);
-}
-
-/* Text glow */
-.text-glow {
-  text-shadow: 0 0 20px rgba(243, 108, 33, 0.5);
-}
-
-/* Glow box */
-.box-glow {
-  box-shadow: 0 0 30px rgba(243, 108, 33, 0.25);
+  border-color: rgba(243, 108, 33, 0.45);
 }
 
 /* Vinyl rotation animation */
@@ -62,8 +58,4 @@ body {
 
 .animate-spin-vinyl {
   animation: spinSlow 6s linear infinite;
-}
-
-.animate-spin-disc {
-  animation: spinSlow 14s linear infinite;
 }

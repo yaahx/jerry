@@ -497,12 +497,7 @@ export default function Home() {
       {/* Navigation Bar */}
       <Navbar
         cartCount={cart.reduce((sum, item) => sum + item.qty, 0)}
-        isAdmin={isAdmin}
         onOpenCart={() => setIsCartOpen(true)}
-        onToggleAdmin={() => {
-          if (isAdmin) setIsAdminDashboardOpen(true);
-          else setIsAdminLoginOpen(true);
-        }}
         artistName={settings.artistName}
       />
 
@@ -587,6 +582,28 @@ export default function Home() {
           onSendMessage={handleSendMessage}
           onToast={showToast}
         />
+
+        {/* Minimal Sharp Footer */}
+        <footer className="pt-16 pb-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest text-stone-500">
+          <div>
+            © {new Date().getFullYear()} {settings.artistName}. All rights reserved.
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#music" className="hover:text-[#f36c21] transition-colors">Music</a>
+            <a href="#store" className="hover:text-[#f36c21] transition-colors">Store</a>
+            <a href="#news" className="hover:text-[#f36c21] transition-colors">Updates</a>
+            <button
+              onClick={() => {
+                if (isAdmin) setIsAdminDashboardOpen(true);
+                else setIsAdminLoginOpen(true);
+              }}
+              className="text-stone-600 hover:text-[#f36c21] transition-colors tracking-widest"
+              title="Admin Control"
+            >
+              Admin Access
+            </button>
+          </div>
+        </footer>
       </main>
 
       {/* Persistent Audio Player Bar */}

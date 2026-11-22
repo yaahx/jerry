@@ -49,11 +49,11 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
       const barWidth = canvas.width / bars - 2;
 
       for (let i = 0; i < bars; i++) {
-        let barHeight = 3;
+        let barHeight = 4;
         if (isPlaying) {
           barHeight = Math.max(
-            3,
-            Math.sin(Date.now() / 150 + i * 0.7) * 10 + Math.random() * 8 + 6
+            4,
+            Math.sin(Date.now() / 150 + i * 0.7) * 12 + Math.random() * 8 + 6
           );
         }
         const grad = ctx.createLinearGradient(0, canvas.height, 0, 0);
@@ -86,19 +86,19 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 h-20 bg-[#0e0b09]/95 backdrop-blur-2xl border-t border-white/10 px-6 flex items-center justify-between gap-4">
+    <div className="fixed bottom-0 left-0 right-0 z-50 h-24 bg-[#0e0b09]/98 backdrop-blur-2xl border-t border-white/10 px-6 sm:px-10 flex items-center justify-between gap-6">
       {/* Left: Track Info */}
-      <div className="flex items-center gap-3.5 min-w-0 max-w-[280px]">
+      <div className="flex items-center gap-4 min-w-0 max-w-[320px]">
         <img
           src={currentTrack.art || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600'}
           alt={currentTrack.title}
-          className="w-12 h-12 rounded-lg object-cover border border-white/10 shrink-0"
+          className="w-14 h-14 object-cover border border-white/15 shrink-0"
         />
         <div className="min-w-0">
-          <div className="font-display font-bold text-sm text-white truncate">
+          <div className="font-display font-extrabold text-base sm:text-lg text-white truncate tracking-tight">
             {currentTrack.title}
           </div>
-          <div className="text-xs text-stone-400 truncate">
+          <div className="text-xs sm:text-sm text-stone-400 truncate font-semibold uppercase tracking-wider">
             {currentTrack.artist}
           </div>
         </div>
@@ -107,23 +107,23 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
       {/* Center: Controls & Scrubbing */}
       <div className="flex-1 max-w-xl flex flex-col items-center">
         {/* Buttons */}
-        <div className="flex items-center gap-5 mb-1.5">
+        <div className="flex items-center gap-6 mb-2">
           <button
             onClick={onPrev}
             className="text-stone-400 hover:text-white transition-colors"
             title="Previous Track"
           >
-            <SkipBack className="w-4 h-4" />
+            <SkipBack className="w-5 h-5" />
           </button>
           <button
             onClick={onTogglePlay}
-            className="w-9 h-9 rounded-full bg-[#f36c21] hover:bg-[#ff7b34] text-white flex items-center justify-center transition-transform hover:scale-105 shadow-[0_0_15px_rgba(243,108,33,0.5)]"
+            className="w-11 h-11 bg-[#f36c21] hover:bg-[#ff7b34] text-white flex items-center justify-center transition-transform hover:scale-105 shadow-[0_0_20px_rgba(243,108,33,0.5)]"
             title={isPlaying ? 'Pause' : 'Play'}
           >
             {isPlaying ? (
-              <Pause className="w-4 h-4 fill-white" />
+              <Pause className="w-5 h-5 fill-white" />
             ) : (
-              <Play className="w-4 h-4 fill-white ml-0.5" />
+              <Play className="w-5 h-5 fill-white ml-0.5" />
             )}
           </button>
           <button
@@ -131,43 +131,42 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
             className="text-stone-400 hover:text-white transition-colors"
             title="Next Track"
           >
-            <SkipForward className="w-4 h-4" />
+            <SkipForward className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Progress Bar */}
+        {/* Progress Bar - Sharp */}
         <div className="w-full flex items-center gap-3">
-          <span className="text-[11px] text-stone-500 w-9 text-right font-mono">
+          <span className="text-xs text-stone-400 w-10 text-right font-mono font-medium">
             {formatTime(currentTime)}
           </span>
           <div
             onClick={handleProgressBarClick}
-            className="flex-1 h-1.5 rounded-full bg-white/10 cursor-pointer relative overflow-hidden group"
+            className="flex-1 h-2 bg-white/10 cursor-pointer relative overflow-hidden group"
           >
             <div
-              className="h-full bg-gradient-to-r from-[#d9531e] to-[#f36c21] rounded-full relative"
+              className="h-full bg-gradient-to-r from-[#d9531e] to-[#f36c21] relative"
               style={{ width: `${progressPct}%` }}
             />
           </div>
-          <span className="text-[11px] text-stone-500 w-9 font-mono">
+          <span className="text-xs text-stone-400 w-10 font-mono font-medium">
             {formatTime(duration)}
           </span>
         </div>
       </div>
 
       {/* Right: Visualizer & Volume */}
-      <div className="hidden sm:flex items-center gap-5 justify-end min-w-[200px]">
+      <div className="hidden sm:flex items-center gap-6 justify-end min-w-[220px]">
         {/* Canvas Visualizer */}
         <canvas
           ref={canvasRef}
-          width={90}
-          height={24}
-          className="rounded"
+          width={100}
+          height={28}
         />
 
         {/* Volume Slider */}
-        <div className="flex items-center gap-2">
-          <Volume2 className="w-4 h-4 text-stone-400 shrink-0" />
+        <div className="flex items-center gap-2.5">
+          <Volume2 className="w-5 h-5 text-stone-400 shrink-0" />
           <input
             type="range"
             min={0}
@@ -175,7 +174,7 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
             step={0.05}
             value={volume}
             onChange={(e) => onVolumeChange(parseFloat(e.target.value))}
-            className="w-18 accent-[#f36c21] cursor-pointer"
+            className="w-20 accent-[#f36c21] cursor-pointer"
           />
         </div>
       </div>

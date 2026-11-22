@@ -1,83 +1,72 @@
 'use client';
 
 import React from 'react';
-import { ShoppingBag, Lock, Unlock } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 interface NavbarProps {
   cartCount: number;
-  isAdmin: boolean;
   onOpenCart: () => void;
-  onToggleAdmin: () => void;
   artistName: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   cartCount,
-  isAdmin,
   onOpenCart,
-  onToggleAdmin,
   artistName,
 }) => {
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-4 bg-[#0c0a09]/90 backdrop-blur-md border-b border-white/10">
-      {/* Brand */}
-      <a href="#" className="flex items-center gap-3 group">
-        <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#f36c21] via-[#ff4500] to-[#ff9f43] p-[2px] animate-spin-disc shadow-[0_0_15px_rgba(243,108,33,0.5)]">
-          <div className="w-full h-full bg-[#0c0a09] rounded-full flex items-center justify-center">
-            <div className="w-2.5 h-2.5 bg-[#f36c21] rounded-full" />
-          </div>
-        </div>
-        <span className="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-white to-[#f36c21] bg-clip-text text-transparent">
-          {artistName}
-        </span>
-      </a>
+    <header className="sticky top-0 z-40 bg-[#0c0a09]/95 backdrop-blur-md border-b border-white/10 px-6 sm:px-10 py-5">
+      <div className="max-w-7xl mx-auto grid grid-cols-12 items-center">
+        {/* Left: Navigation Links */}
+        <nav className="col-span-4 hidden md:flex items-center gap-7 text-sm lg:text-base font-semibold tracking-wider uppercase text-stone-300">
+          <a href="#music" className="hover:text-[#f36c21] transition-colors">
+            Music
+          </a>
+          <a href="#store" className="hover:text-[#f36c21] transition-colors">
+            Store
+          </a>
+          <a href="#news" className="hover:text-[#f36c21] transition-colors">
+            Updates
+          </a>
+          <a href="#about" className="hover:text-[#f36c21] transition-colors">
+            About
+          </a>
+          <a href="#contact" className="hover:text-[#f36c21] transition-colors">
+            Contact
+          </a>
+        </nav>
 
-      {/* Nav Links */}
-      <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-400">
-        <a href="#music" className="hover:text-white transition-colors">Music</a>
-        <a href="#store" className="hover:text-white transition-colors">Store</a>
-        <a href="#news" className="hover:text-white transition-colors">Updates</a>
-        <a href="#about" className="hover:text-white transition-colors">About</a>
-        <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-      </nav>
-
-      {/* Action Buttons */}
-      <div className="flex items-center gap-3.5">
-        {/* Cart */}
-        <button
-          onClick={onOpenCart}
-          className="relative p-2.5 rounded-full bg-white/5 border border-white/10 hover:border-[#f36c21] hover:text-[#f36c21] transition-all text-stone-300"
-          title="Open Cart"
-        >
-          <ShoppingBag className="w-4 h-4" />
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-[#f36c21] text-white text-[11px] font-bold px-1.5 py-0.5 rounded-full leading-none border-2 border-[#0c0a09]">
-              {cartCount}
+        {/* Center: Brand Name (No logo beside it, centered, stylish font) */}
+        <div className="col-span-8 md:col-span-4 flex items-center md:justify-center">
+          <a href="#" className="group inline-block text-center">
+            <span className="font-brand font-black text-xl sm:text-2xl lg:text-3xl tracking-wider uppercase bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent group-hover:to-[#ff9f43] transition-all">
+              {artistName}
             </span>
-          )}
-        </button>
+          </a>
+        </div>
 
-        {/* Admin Portal Toggle */}
-        <button
-          onClick={onToggleAdmin}
-          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-            isAdmin
-              ? 'bg-[#f36c21]/20 border-[#f36c21] text-[#ff9f43] shadow-[0_0_15px_rgba(243,108,33,0.3)]'
-              : 'bg-white/5 border-white/10 text-stone-400 hover:text-[#f36c21] hover:border-[#f36c21]'
-          }`}
-        >
-          {isAdmin ? (
-            <>
-              <Unlock className="w-3.5 h-3.5 text-[#f36c21]" />
-              <span>Admin Active</span>
-            </>
-          ) : (
-            <>
-              <Lock className="w-3.5 h-3.5" />
-              <span>Admin Portal</span>
-            </>
-          )}
-        </button>
+        {/* Right: Cart Button (No admin portal) */}
+        <div className="col-span-4 flex items-center justify-end gap-5">
+          {/* Mobile links toggle indicator or link */}
+          <div className="md:hidden flex items-center gap-3 text-xs uppercase font-bold text-stone-400">
+            <a href="#music" className="hover:text-[#f36c21]">Music</a>
+            <a href="#store" className="hover:text-[#f36c21]">Store</a>
+          </div>
+
+          <button
+            onClick={onOpenCart}
+            className="relative flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-[#f36c21] border border-white/10 hover:border-[#f36c21] text-white transition-all text-sm font-bold tracking-wider uppercase shadow-sm"
+            title="Open Shopping Cart"
+          >
+            <ShoppingBag className="w-4 h-4 text-[#ff9f43] group-hover:text-white" />
+            <span className="hidden sm:inline">Cart</span>
+            {cartCount > 0 && (
+              <span className="bg-[#f36c21] text-white text-xs font-black px-2 py-0.5 border border-[#0c0a09]">
+                {cartCount}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   );

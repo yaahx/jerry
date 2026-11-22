@@ -62,23 +62,23 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div onClick={onClose} className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-      <div className="relative w-full max-w-md bg-[#16120e] border border-white/10 rounded-2xl p-6 shadow-2xl z-10">
-        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
-          <div className="flex items-center gap-2">
+      <div onClick={onClose} className="absolute inset-0 bg-black/85 backdrop-blur-sm" />
+      <div className="relative w-full max-w-lg bg-[#16120e] border border-white/10 p-7 shadow-2xl z-10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+          <div className="flex items-center gap-3">
             <ShoppingBag className="w-5 h-5 text-[#f36c21]" />
-            <h3 className="font-display font-bold text-lg text-white">
+            <h3 className="font-display font-black text-xl text-white uppercase tracking-tight">
               {productToEdit ? 'Edit Merchandise Item' : 'Add Item to Store'}
             </h3>
           </div>
-          <button onClick={onClose} className="p-1 rounded text-stone-400 hover:text-white">
+          <button onClick={onClose} className="p-1.5 text-stone-400 hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Product Title
             </label>
             <input
@@ -87,19 +87,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Burnt Orange Hoodie"
               required
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                 Category
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-lg bg-[#14100c] border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+                className="w-full px-4 py-3 bg-[#14100c] border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
               >
                 <option value="Apparel">Apparel</option>
                 <option value="Vinyl & CD">Vinyl & CD</option>
@@ -108,7 +108,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                 Price
               </label>
               <input
@@ -118,13 +118,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="25.00"
                 required
-                className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+                className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Badge (e.g. Bestseller, Limited)
             </label>
             <input
@@ -132,12 +132,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               value={badge}
               onChange={(e) => setBadge(e.target.value)}
               placeholder="Limited Edition"
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Product Photo URL
             </label>
             <input
@@ -145,34 +145,34 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               value={img}
               onChange={(e) => setImg(e.target.value)}
               placeholder="https://example.com/item.jpg"
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Description
             </label>
             <textarea
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
-              rows={2}
+              rows={3}
               placeholder="Materials, sizing, shipping details..."
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21] resize-none"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21] resize-none"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-2">
+          <div className="flex justify-end gap-3 pt-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-xs font-semibold text-stone-400 hover:text-white"
+              className="px-5 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-400 hover:text-white"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-lg bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs font-bold shadow-md"
+              className="px-6 py-2.5 bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md"
             >
               Save Product
             </button>

@@ -20,14 +20,14 @@ export const NewsSection: React.FC<NewsSectionProps> = ({
   onDeleteNews,
 }) => {
   return (
-    <section id="news" className="py-16 border-b border-white/10">
+    <section id="news" className="py-20 border-b border-white/10">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex items-center justify-between mb-12">
         <div>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight uppercase">
             News & Updates
           </h2>
-          <p className="text-stone-400 text-sm mt-1">
+          <p className="text-stone-300 text-base sm:text-lg mt-2 font-normal">
             Latest announcements, upcoming tour dates, studio stories, and project drops.
           </p>
         </div>
@@ -35,57 +35,57 @@ export const NewsSection: React.FC<NewsSectionProps> = ({
         {isAdmin && (
           <button
             onClick={onAddNews}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#f36c21]/20 border border-[#f36c21] text-[#ff9f43] hover:bg-[#f36c21] hover:text-white text-xs font-bold transition-all shadow-sm"
+            className="flex items-center gap-2 px-5 py-2.5 bg-[#f36c21]/20 border border-[#f36c21] text-[#ff9f43] hover:bg-[#f36c21] hover:text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-4 h-4" />
             <span>Post Update</span>
           </button>
         )}
       </div>
 
-      {/* News Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* News Cards - Sharp */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         {news.map((item) => (
           <div
             key={item.id}
-            className="glass-panel rounded-xl p-6 relative flex flex-col transition-all hover:border-[#f36c21]/40"
+            className="glass-panel p-7 relative flex flex-col transition-all hover:border-[#f36c21]/50 border border-white/10"
           >
             {/* Admin Overlay Actions */}
             {isAdmin && (
-              <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5">
+              <div className="absolute top-5 right-5 z-20 flex items-center gap-2">
                 <button
                   onClick={() => onEditNews(item)}
-                  className="p-1.5 rounded-md bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs shadow-md transition-all"
+                  className="p-2 bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs shadow-md transition-all"
                   title="Edit Post"
                 >
-                  <Edit2 className="w-3.5 h-3.5" />
+                  <Edit2 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => onDeleteNews(item.id)}
-                  className="p-1.5 rounded-md bg-red-600 hover:bg-red-500 text-white text-xs shadow-md transition-all"
+                  className="p-2 bg-red-600 hover:bg-red-500 text-white text-xs shadow-md transition-all"
                   title="Delete Post"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </div>
             )}
 
-            <div className="flex items-center gap-4 text-xs mb-3">
-              <span className="flex items-center gap-1 text-[#ff9f43] font-semibold bg-[#f36c21]/15 px-2.5 py-0.5 rounded-full border border-[#f36c21]/30">
-                <Tag className="w-3 h-3" />
+            <div className="flex items-center gap-4 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4">
+              <span className="flex items-center gap-1.5 text-[#ff9f43] bg-[#f36c21]/15 px-3 py-1 border border-[#f36c21]/30">
+                <Tag className="w-3.5 h-3.5" />
                 <span>{item.tag || 'News'}</span>
               </span>
-              <span className="flex items-center gap-1 text-stone-500">
-                <Calendar className="w-3 h-3" />
+              <span className="flex items-center gap-1.5 text-stone-400 font-mono">
+                <Calendar className="w-3.5 h-3.5" />
                 <span>{item.date}</span>
               </span>
             </div>
 
-            <h3 className="font-display font-bold text-xl text-white mb-3">
+            <h3 className="font-display font-black text-2xl text-white mb-3 tracking-tight">
               {item.title}
             </h3>
 
-            <p className="text-sm text-stone-300 leading-relaxed whitespace-pre-line">
+            <p className="text-base text-stone-300 leading-relaxed whitespace-pre-line font-normal">
               {item.content}
             </p>
           </div>

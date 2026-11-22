@@ -101,15 +101,15 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
   const getBadgeStyle = (type: Activity['type']) => {
     switch (type) {
       case 'play':
-        return 'bg-[#f36c21]/20 text-[#ff9f43] border-[#f36c21]/30';
+        return 'bg-[#f36c21]/20 text-[#ff9f43] border-[#f36c21]/40';
       case 'shop':
-        return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+        return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
       case 'inquiry':
-        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
       case 'admin':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+        return 'bg-purple-500/20 text-purple-300 border-purple-500/40';
       default:
-        return 'bg-stone-500/20 text-stone-300 border-stone-500/30';
+        return 'bg-stone-500/20 text-stone-300 border-stone-500/40';
     }
   };
 
@@ -118,29 +118,29 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
       {/* Backdrop */}
       <div onClick={onClose} className="absolute inset-0 bg-black/85 backdrop-blur-md" />
 
-      {/* Modal Dialog */}
-      <div className="relative w-full max-w-4xl bg-[#14100c] border border-white/10 rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden z-10">
+      {/* Modal Dialog - Sharp */}
+      <div className="relative w-full max-w-5xl bg-[#14100c] border border-white/10 shadow-2xl flex flex-col max-h-[90vh] overflow-hidden z-10">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-          <div className="flex items-center gap-2.5">
-            <BarChart2 className="w-5 h-5 text-[#f36c21]" />
-            <h3 className="font-display font-extrabold text-xl text-white">
+        <div className="flex items-center justify-between px-7 py-5 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <BarChart2 className="w-6 h-6 text-[#f36c21]" />
+            <h3 className="font-display font-black text-2xl text-white uppercase tracking-tight">
               Artist Control Center & Analytics
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-stone-400 hover:text-white transition-colors"
+            className="p-1.5 text-stone-400 hover:text-white transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex items-center gap-2 px-6 border-b border-white/10 bg-black/20 overflow-x-auto">
+        {/* Tab Navigation - Sharp */}
+        <div className="flex items-center gap-2 px-7 border-b border-white/10 bg-black/30 overflow-x-auto">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-all ${
+            className={`flex items-center gap-2 py-4 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 transition-all ${
               activeTab === 'overview'
                 ? 'border-[#f36c21] text-[#ff9f43]'
                 : 'border-transparent text-stone-400 hover:text-white'
@@ -151,121 +151,121 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('activity')}
-            className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-all ${
+            className={`flex items-center gap-2 py-4 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 transition-all ${
               activeTab === 'activity'
                 ? 'border-[#f36c21] text-[#ff9f43]'
                 : 'border-transparent text-stone-400 hover:text-white'
             }`}
           >
             <ActivityIcon className="w-4 h-4" />
-            <span>Individual Activity Logs</span>
+            <span>Activity Logs</span>
           </button>
           <button
             onClick={() => setActiveTab('messages')}
-            className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-all ${
+            className={`flex items-center gap-2 py-4 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 transition-all ${
               activeTab === 'messages'
                 ? 'border-[#f36c21] text-[#ff9f43]'
                 : 'border-transparent text-stone-400 hover:text-white'
             }`}
           >
             <Mail className="w-4 h-4" />
-            <span>Guest Messages ({messages.length})</span>
+            <span>Messages ({messages.length})</span>
           </button>
           <button
             onClick={() => setActiveTab('settings')}
-            className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-all ${
+            className={`flex items-center gap-2 py-4 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider border-b-2 transition-all ${
               activeTab === 'settings'
                 ? 'border-[#f36c21] text-[#ff9f43]'
                 : 'border-transparent text-stone-400 hover:text-white'
             }`}
           >
             <Settings className="w-4 h-4" />
-            <span>Site Settings</span>
+            <span>Settings</span>
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-7">
           {/* Tab 1: Overview */}
           {activeTab === 'overview' && (
-            <div className="space-y-6">
-              {/* Stat Cards Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+            <div className="space-y-7">
+              {/* Stat Cards Grid - Sharp */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Visitors</span>
                     <Users className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.totalVisitors}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Pageviews</span>
                     <Eye className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.pageViews}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Streams</span>
                     <PlayCircle className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.trackPlays}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Merch Views</span>
                     <ShoppingBag className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.productViews}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Inquiries</span>
                     <Receipt className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.cartInquiries}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="flex items-center justify-between text-stone-400 text-xs mb-2">
+                <div className="p-5 bg-white/5 border border-white/10">
+                  <div className="flex items-center justify-between text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span>Messages</span>
                     <Mail className="w-4 h-4 text-[#f36c21]" />
                   </div>
-                  <div className="font-display font-extrabold text-2xl text-white">
+                  <div className="font-display font-black text-3xl text-white">
                     {metrics.messagesReceived}
                   </div>
                 </div>
               </div>
 
-              {/* Quick Actions Card */}
-              <div className="p-5 rounded-xl bg-white/5 border border-white/5">
-                <h4 className="text-sm font-bold text-white mb-3">
+              {/* Quick Actions Card - Sharp */}
+              <div className="p-6 bg-white/5 border border-white/10">
+                <h4 className="text-sm font-black text-white uppercase tracking-wider mb-4">
                   Quick Content Actions
                 </h4>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                   <button
                     onClick={() => {
                       onClose();
                       onOpenAddTrack();
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs font-bold transition-all shadow-md"
+                    className="flex items-center gap-2 px-5 py-3 bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-4 h-4" />
                     <span>Upload Track</span>
                   </button>
                   <button
@@ -273,9 +273,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       onClose();
                       onOpenAddProduct();
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all"
+                    className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-4 h-4" />
                     <span>Add Merch Item</span>
                   </button>
                   <button
@@ -283,9 +283,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                       onClose();
                       onOpenAddNews();
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all"
+                    className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-4 h-4" />
                     <span>Post Update</span>
                   </button>
                 </div>
@@ -295,14 +295,16 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
 
           {/* Tab 2: Activity Logs */}
           {activeTab === 'activity' && (
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <label className="text-xs text-stone-400 font-semibold">Filter:</label>
+            <div className="space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <label className="text-xs sm:text-sm text-stone-300 font-bold uppercase tracking-wider">
+                    Filter:
+                  </label>
                   <select
                     value={activityFilter}
                     onChange={(e) => setActivityFilter(e.target.value)}
-                    className="px-3 py-1.5 rounded-lg bg-[#16120e] border border-white/10 text-white text-xs focus:outline-none focus:border-[#f36c21]"
+                    className="px-4 py-2 bg-[#16120e] border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:border-[#f36c21]"
                   >
                     <option value="all">All Events</option>
                     <option value="play">Music Streams</option>
@@ -313,50 +315,50 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                   </select>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <button
                     onClick={handleExportCSV}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/15 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-colors"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#ff9f43]" />
+                    <Download className="w-4 h-4 text-[#ff9f43]" />
                     <span>Export CSV</span>
                   </button>
                   <button
                     onClick={onClearActivities}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600/20 hover:bg-red-600/30 border border-red-500/30 text-xs font-semibold text-red-300 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-500/30 text-xs sm:text-sm font-bold uppercase tracking-wider text-red-300 transition-colors"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash2 className="w-4 h-4" />
                     <span>Clear Logs</span>
                   </button>
                 </div>
               </div>
 
-              {/* Activity Rows */}
-              <div className="rounded-xl border border-white/10 bg-black/20 divide-y divide-white/5 max-h-96 overflow-y-auto">
+              {/* Activity Rows - Sharp */}
+              <div className="border border-white/10 bg-black/30 divide-y divide-white/5 max-h-96 overflow-y-auto">
                 {filteredActivities.length === 0 ? (
-                  <div className="p-8 text-center text-xs text-stone-500">
+                  <div className="p-8 text-center text-xs sm:text-sm text-stone-400">
                     No activity entries recorded for this filter.
                   </div>
                 ) : (
                   filteredActivities.map((act) => (
                     <div
                       key={act.id}
-                      className="p-3.5 flex items-center gap-3 text-xs hover:bg-white/5 transition-colors"
+                      className="p-4 flex items-center gap-4 text-xs sm:text-sm hover:bg-white/5 transition-colors"
                     >
                       <span
-                        className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border shrink-0 ${getBadgeStyle(
+                        className={`px-2.5 py-1 text-[11px] font-black uppercase tracking-wider border shrink-0 ${getBadgeStyle(
                           act.type
                         )}`}
                       >
                         {act.type}
                       </span>
-                      <span className="font-semibold text-white shrink-0">
+                      <span className="font-bold text-white shrink-0">
                         {act.guest}
                       </span>
                       <span className="text-stone-300 flex-1 truncate">
                         {act.detail}
                       </span>
-                      <span className="text-stone-500 shrink-0 font-mono text-[11px]">
+                      <span className="text-stone-400 shrink-0 font-mono text-xs">
                         {new Date(act.timestamp).toLocaleTimeString([], {
                           hour: '2-digit',
                           minute: '2-digit',
@@ -373,39 +375,39 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
           {activeTab === 'messages' && (
             <div className="space-y-4">
               {messages.length === 0 ? (
-                <div className="p-12 text-center text-stone-400 text-xs">
+                <div className="p-16 text-center text-stone-400 text-sm font-medium">
                   Your message inbox is currently empty.
                 </div>
               ) : (
                 messages.map((m) => (
                   <div
                     key={m.id}
-                    className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 relative"
+                    className="p-5 bg-white/5 border border-white/10 space-y-2 relative"
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-white">{m.name}</span>
-                        <span className="text-xs text-[#ff9f43] font-mono">
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-base text-white">{m.name}</span>
+                        <span className="text-xs sm:text-sm text-[#ff9f43] font-mono">
                           &lt;{m.email}&gt;
                         </span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] text-stone-500">{m.date}</span>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-stone-400">{m.date}</span>
                         <button
                           onClick={() => onDeleteMessage(m.id)}
-                          className="p-1 text-stone-500 hover:text-red-400 transition-colors"
+                          className="p-1.5 text-stone-400 hover:text-red-400 transition-colors"
                           title="Delete Message"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
 
-                    <div className="text-[11px] font-bold text-[#f36c21] uppercase tracking-wider">
+                    <div className="text-xs font-bold text-[#f36c21] uppercase tracking-wider">
                       Subject: {m.type}
                     </div>
 
-                    <p className="text-xs text-stone-300 leading-relaxed whitespace-pre-wrap">
+                    <p className="text-sm text-stone-300 leading-relaxed whitespace-pre-wrap font-normal">
                       {m.message}
                     </p>
                   </div>
@@ -416,10 +418,10 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
 
           {/* Tab 4: Site Settings */}
           {activeTab === 'settings' && (
-            <form onSubmit={handleSettingsSubmit} className="space-y-4 max-w-xl">
+            <form onSubmit={handleSettingsSubmit} className="space-y-5 max-w-xl">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                     Artist / Brand Name
                   </label>
                   <input
@@ -427,11 +429,11 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                     value={artistName}
                     onChange={(e) => setArtistName(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                     Currency Symbol
                   </label>
                   <input
@@ -440,37 +442,37 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                     onChange={(e) => setCurrency(e.target.value)}
                     maxLength={3}
                     required
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                   Tagline
                 </label>
                 <input
                   type="text"
                   value={tagline}
                   onChange={(e) => setTagline(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                   Artist Bio
                 </label>
                 <textarea
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   rows={4}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21] resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21] resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
                   Change Master PIN
                 </label>
                 <input
@@ -478,13 +480,13 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
                   value={newPin}
                   onChange={(e) => setNewPin(e.target.value)}
                   placeholder="Leave empty to keep current PIN"
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm font-mono focus:outline-none focus:border-[#f36c21]"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm font-mono focus:outline-none focus:border-[#f36c21]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs font-bold transition-all shadow-md"
+                className="flex items-center gap-2.5 px-7 py-3.5 bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Changes</span>

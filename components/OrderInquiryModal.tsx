@@ -45,25 +45,27 @@ export const OrderInquiryModal: React.FC<OrderInquiryModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div onClick={onClose} className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-      <div className="relative w-full max-w-md bg-[#16120e] border border-white/10 rounded-2xl p-6 shadow-2xl z-10">
-        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
-          <div className="flex items-center gap-2">
+      <div onClick={onClose} className="absolute inset-0 bg-black/85 backdrop-blur-sm" />
+      <div className="relative w-full max-w-lg bg-[#16120e] border border-white/10 p-7 shadow-2xl z-10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div className="flex items-center gap-3">
             <PackageCheck className="w-5 h-5 text-[#f36c21]" />
-            <h3 className="font-display font-bold text-lg text-white">Complete Order Inquiry</h3>
+            <h3 className="font-display font-black text-xl text-white uppercase tracking-tight">
+              Complete Order Inquiry
+            </h3>
           </div>
-          <button onClick={onClose} className="p-1 rounded text-stone-400 hover:text-white">
+          <button onClick={onClose} className="p-1.5 text-stone-400 hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <p className="text-xs text-stone-400 leading-relaxed mb-5">
+        <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mb-6 font-normal">
           Submit your order inquiry directly to the artist. You will receive an invoice and payment instructions (PayPal, Card, or Transfer) via email.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Your Full Name
             </label>
             <input
@@ -72,12 +74,12 @@ export const OrderInquiryModal: React.FC<OrderInquiryModalProps> = ({
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Jordan Miller"
               required
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Email Address
             </label>
             <input
@@ -86,12 +88,12 @@ export const OrderInquiryModal: React.FC<OrderInquiryModalProps> = ({
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
               required
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Shipping City & Country
             </label>
             <input
@@ -100,33 +102,33 @@ export const OrderInquiryModal: React.FC<OrderInquiryModalProps> = ({
               onChange={(e) => setAddress(e.target.value)}
               placeholder="e.g. London, United Kingdom"
               required
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f36c21]"
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-[#f36c21]"
             />
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-300 uppercase tracking-wider mb-2">
               Cart Summary
             </label>
             <textarea
               value={summary}
               readOnly
               rows={3}
-              className="w-full px-3.5 py-2.5 rounded-lg bg-black/40 border border-white/5 text-stone-400 text-xs font-mono resize-none focus:outline-none"
+              className="w-full px-4 py-3 bg-black/50 border border-white/10 text-stone-300 text-xs sm:text-sm font-mono resize-none focus:outline-none"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-2">
+          <div className="flex justify-end gap-3 pt-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-xs font-semibold text-stone-400 hover:text-white"
+              className="px-5 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-400 hover:text-white"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs font-bold shadow-md"
+              className="flex items-center gap-2 px-6 py-3 bg-[#f36c21] hover:bg-[#ff7b34] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md"
             >
               <CheckCircle className="w-4 h-4" />
               <span>Send Order Inquiry</span>
