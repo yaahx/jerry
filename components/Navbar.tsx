@@ -15,39 +15,39 @@ export const Navbar: React.FC<NavbarProps> = ({
   artistName,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-[#0c0a09]/95 backdrop-blur-md border-b border-white/10 px-6 sm:px-10 py-5">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 items-center">
-        {/* Left: Navigation Links */}
-        <nav className="col-span-4 hidden md:flex items-center gap-7 text-sm lg:text-base font-semibold tracking-wider uppercase text-stone-300">
-          <a href="#music" className="hover:text-[#f36c21] transition-colors">
+    <header className="sticky top-0 z-40 w-full bg-[#0c0a09]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-4">
+      <div className="w-full flex items-center justify-between relative">
+        {/* Left: Navigation Links (No large left margins, ample breathing room) */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-semibold tracking-wider uppercase text-stone-300">
+          <a href="#music" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             Music
           </a>
-          <a href="#store" className="hover:text-[#f36c21] transition-colors">
+          <a href="#store" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             Store
           </a>
-          <a href="#news" className="hover:text-[#f36c21] transition-colors">
+          <a href="#news" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             Updates
           </a>
-          <a href="#about" className="hover:text-[#f36c21] transition-colors">
+          <a href="#about" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             About
           </a>
-          <a href="#contact" className="hover:text-[#f36c21] transition-colors">
+          <a href="#contact" className="hover:text-[#f36c21] transition-colors whitespace-nowrap">
             Contact
           </a>
         </nav>
 
-        {/* Center: Brand Name (No logo beside it, centered, stylish font) */}
-        <div className="col-span-8 md:col-span-4 flex items-center md:justify-center">
+        {/* Center: Brand Name (Centered in the viewport, will not collide with left or right items) */}
+        <div className="md:absolute md:left-1/2 md:-translate-x-1/2 flex items-center justify-center">
           <a href="#" className="group inline-block text-center">
-            <span className="font-brand font-black text-xl sm:text-2xl lg:text-3xl tracking-wider uppercase bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent group-hover:to-[#ff9f43] transition-all">
+            <span className="font-brand font-black text-xl sm:text-2xl lg:text-3xl tracking-wider uppercase bg-gradient-to-r from-white via-stone-100 to-[#f36c21] bg-clip-text text-transparent group-hover:to-[#ff9f43] transition-all whitespace-nowrap">
               {artistName}
             </span>
           </a>
         </div>
 
-        {/* Right: Cart Button (No admin portal) */}
-        <div className="col-span-4 flex items-center justify-end gap-5">
-          {/* Mobile links toggle indicator or link */}
+        {/* Right: Cart Button (No large right margins) */}
+        <div className="flex items-center gap-4 ml-auto">
+          {/* Mobile links */}
           <div className="md:hidden flex items-center gap-3 text-xs uppercase font-bold text-stone-400">
             <a href="#music" className="hover:text-[#f36c21]">Music</a>
             <a href="#store" className="hover:text-[#f36c21]">Store</a>
@@ -55,10 +55,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={onOpenCart}
-            className="relative flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-[#f36c21] border border-white/10 hover:border-[#f36c21] text-white transition-all text-sm font-bold tracking-wider uppercase shadow-sm"
+            className="relative flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-[#f36c21] border border-white/10 hover:border-[#f36c21] text-white transition-all text-sm font-bold tracking-wider uppercase shadow-sm"
             title="Open Shopping Cart"
           >
-            <ShoppingBag className="w-4 h-4 text-[#ff9f43] group-hover:text-white" />
+            <ShoppingBag className="w-4 h-4 text-[#ff9f43]" />
             <span className="hidden sm:inline">Cart</span>
             {cartCount > 0 && (
               <span className="bg-[#f36c21] text-white text-xs font-black px-2 py-0.5 border border-[#0c0a09]">
