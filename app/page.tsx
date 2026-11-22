@@ -509,11 +509,11 @@ export default function Home() {
         />
       )}
 
+      {/* Hero Section (Edge-to-edge full width without outer margins) */}
+      <Hero artistName={settings.artistName} />
+
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6">
-        <Hero
-          artistName={settings.artistName}
-        />
 
         <MusicSection
           tracks={tracks}
