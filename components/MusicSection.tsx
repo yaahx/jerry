@@ -122,7 +122,7 @@ export const MusicSection: React.FC<MusicSectionProps> = ({
                 {/* Play button */}
                 <button
                   onClick={() => onPlayTrack(track)}
-                  className={`rounded-md absolute bottom-6 left-6 w-14 sm:w-16 h-14 sm:h-16 flex items-center justify-center bg-[#f36c21] text-white shadow-[0_4px_25px_rgba(243,108,33,0.55)] transition-all duration-300 hover:scale-105 ${isThisPlaying ? 'opacity-100' : 'opacity-85 hover:opacity-100'
+                  className={`rounded-md absolute bottom-6 left-6 w-14 sm:w-16 h-14 sm:h-16 flex items-center justify-center bg-[#f36c21] text-white shadow-[0_4px_25px_rgba(243,108,33,0.55)] transition-all duration-300 hover:scale-105 ${isThisPlaying ? 'opacity-100' : 'opacity-85 hover:opacity-100 rounded-md'
                     }`}
                 >
                   {isThisPlaying ? (
