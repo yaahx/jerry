@@ -93,18 +93,11 @@ export const Hero: React.FC<HeroProps> = ({ artistName }) => {
               <stop offset="0%" stopColor="#ffffff" />
               <stop offset="25%" stopColor="#ffb570" />
               <stop offset="60%" stopColor="#f36c21" />
-              <stop offset="100%" stopColor="#993300" />
+              <stop offset="100%" stopColor="#d9531e" />
             </linearGradient>
-
-            <filter id="gta3DShadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="3" dy="3" stdDeviation="0" floodColor="#000000" />
-              <feDropShadow dx="-2" dy="-2" stdDeviation="0" floodColor="#000000" />
-              <feDropShadow dx="7" dy="10" stdDeviation="2" floodColor="#1a0a03" />
-              <feDropShadow dx="0" dy="0" stdDeviation="18" floodColor="rgba(243, 108, 33, 0.5)" />
-            </filter>
           </defs>
 
-          {/* GTA San Andreas styled text */}
+          {/* GTA San Andreas styled sharp graffiti text */}
           <text
             x="50%"
             y="65%"
@@ -115,10 +108,9 @@ export const Hero: React.FC<HeroProps> = ({ artistName }) => {
               fontSize: "148px",
               letterSpacing: "0.03em",
               stroke: "#000000",
-              strokeWidth: "14px",
+              strokeWidth: "12px",
               paintOrder: "stroke fill",
               fill: "url(#gtaOrangeGrad)",
-              filter: "url(#gta3DShadow)",
             }}
           >
             {artistName}
